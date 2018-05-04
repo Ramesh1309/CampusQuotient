@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="/sucess" method="post">
+<form action="/sucess" method="POST">
 You have successfully registered .. <a href='<c:url value="/sucess?showdata"></c:url>'>Click here to Login</a>
 </form>
 </body>

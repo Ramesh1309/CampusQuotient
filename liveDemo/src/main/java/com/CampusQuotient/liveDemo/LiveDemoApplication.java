@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 import com.CampusQuotient.liveDemo.Controller.LoginRegController;
 
+
 @SpringBootApplication
 @EnableAutoConfiguration
 @ComponentScan(basePackageClasses=LoginRegController.class)

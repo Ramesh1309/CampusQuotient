@@ -1,92 +1,102 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="/css/StudentRegCss.css">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://apis.google.com">
 <title>Student Registeration page</title>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
-<script src="/javascript/js.js"></script>
-<link rel="stylesheet" href="/css/StudentForm.css">
 </head>
 <body>
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <div class="container">
+        <img src="/css/images/CQlogo.png" alt="CQLogo">
+            </div>
+    </nav>
+            <form action="/studentreg" method="POST" id="fileForm">
+     
 <div class="container">
-<form class="form-horizontal" th:action="@{/myclass}" th:object="${stpojo}" action="/insert" method="post" role="form" onsubmit="return Checkuser();" >
-    			<h2>Registration</h2>
-                <div class="form-group">
-                    <label for="F_Name" class="col-sm-3 control-label">First Name</label>
-                    <div class="col-sm-9">
-                        <input path="F_Name" type="text" th:field="*{F_Name}" name="F_Name" id="F_Name" placeholder="First Name" class="form-control" />
-                    	<div th:if="${#fields.hasErrors('F_Name')}" th:errors="*{F_Name}" ></div>
-               	    </div>
-               	</div>
-                <div class="form-group">
-                    <label for="L_Name" class="col-sm-3 control-label">Last Name</label>
-                    <div class="col-sm-9">
-                        <input path="L_Name" type="text" th:field="*{L_Name}"  id="L_Name" name="L_Name" placeholder="Last Name" class="form-control" />
-                   		<div th:if="${#fields.hasErrors('L_Name')}" th:errors="*{L_Name}"></div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="Email" class="col-sm-3 control-label">Email* </label>
-                    <div class="col-sm-9">
-                        <input path="Email" type="text" th:fields="*{Email}" id="Email" name="Email" class="form-control"/>
-             		<div th:if="${#fields.hasErrors('Email')}" th:errors="*{Email}"></div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="Phn_No" class="col-sm-3 control-label">Phone Number*</label>
-                    <div class="col-sm-9">
-                        <input path="Phn_Num" type="text" id="Phn_Num" th:field="*{Phn_Num}" name="Phn_Num" class="form-control"/>
-                    <div th:if="${#fields.hasErrors('Phn_Num')}" th:errors="*{Phn_Num}"></div>
-                        <span class="help-block">Your phone number won't be disclosed anywhere </span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="Reg_No" class="col-sm-3 control-label">Registeration number* </label>
-                    <div class="col-sm-9">
-                        <input path="Reg_Num" type="text" th:fields="*{Reg_Num}" id="Reg_Num" name="Reg_No" placeholder="Registeration number" class="form-control" />
-                  	<div th:if="${#fields.hasErrors('Reg_Num')}" th:errors="*{Reg_Num}"></div>
-                    </div>
-                </div>
-                <div class="form-group">
-                        <label for="University" class="col-sm-3 control-label">University* </label>
-                    <div class="col-sm-9">
-                        <form:input path="University" type="text" th:field="*{University}" id="University" name="University" placeholder="University Name" class="form-control"/>
-                  	<div th:if="${#fields.hasErrors('University')}" th:errors="*{University}"></div>
-                    </div>
-                </div>
-                 <div class="form-group">
-                        <label for="CollegeName" class="col-sm-3 control-label" >College* </label>
-                    <div class="col-sm-9">
-                        <input path="College" type="text" id="College" th:field="*{College}" name="College" placeholder="College Name"  class="form-control" />
-                   <div th:if="${#fields.hasErrors('College')}" th:errors="*{College}"></div>
-                    </div>
-                 </div>
-                 <div class="form-group">
-                        <label for="Branch" class="col-sm-3 control-label">Branch* </label>
-                    <div class="col-sm-9">
-                        <input path="Branch" type="text" th:field="*{Branch}" id="Branch" name="Branch" placeholder="Branch Name" class="form-control" />
-                    <div th:if="${#fields.hasErrors('Branch')}" th:errors="*{Branch}"></div>
-                    </div>
-                 </div>
-          		<div class="form-group">
-                        <label for="YOP" class="col-sm-3 control-label">Year of passing* </label>
-                    <div class="col-sm-9">
-                        <input path="YOP" type="text" th:field="*{YOP}" id="YOP" name="YOP" placeholder="Year of passing" class="datepicker" />
-                    <div th:if="${#fields.hasErrors('YOP')}" th:errors="*{YOP}"></div>
-                    </div>
-          		</div>
+	<div class="row">
+        <div class="col-md-6">
 
-                <button type="submit" class="btn btn-primary btn-block">Register</button>
-    </form> <!-- /form -->
-</div> <!-- ./container -->
+            <fieldset><br><legend class="text-center"><h1><strong>Students registeration</strong></h1> </legend>
+
+            <div class="form-group">
+           	<div class="form-group"> 	 
+                <label for="F_Name"><span class="req">* </span> First name: </label>
+                    <input class="form-control" type="text" name="F_Name" id = "txt"  required /> 
+                        <div id="errFirst"></div>    
+            </div>
+
+            <div class="form-group">
+                <label for="L_Name"><span class="req">* </span> Last name: </label> 
+                    <input class="form-control" type="text" name="L_Name" id = "L_Name" required />  
+                        <div id="errLast"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="Email"><span class="req">* </span> Email Address: </label> 
+                    <input class="form-control" required type="email" name="Email" id = "Email" />   
+                        <div class="status" id="status"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="Phn_Num"><span class="req">* </span> Phone number:  <small>The phone number wont be disclosed to anyone</small> </label> 
+                    <input class="form-control" type="text" name="Phn_Num" id = "Phn_Num" maxlength="10" required />  
+                        <div id="errLast"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="Reg_Num"><span class="req">* </span> Registeration Number: </label>
+                    <input required name="Reg_Num" type="text" class="form-control inputpass" minlength="5" maxlength="20"  id="Reg_Num" /> </p>
+			</div>
+			<div class="form-group">
+                <label for="College"><span class="req">* </span> College: </label>
+                    <input required name="College" type="text" class="form-control inputpass" minlength="4" maxlength="16"  id="Reg_Num" />
+                        <span id="errCollege" class="errCollege"></span>
+            </div>
+            <div class="form-group">
+             <label for="University"><span class="req">* </span> University: </label>
+                    <input required name="University" type="text" class="form-control inputpass" id="University" />
+                        <span id="errUniversity" class="errUniversity"></span>
+            
+            
+            </div>
+            <div>
+            <label for="Branch"><span class="req">* </span> Branch: </label>
+                    <input required name="Branch" type="text" class="form-control inputpass"  id="Branch" />
+                        <span id="errBranch" class="errBranch"></span>
+            </div>
+            <div>
+             <label for="YOP"><span class="req">* </span> Year of passing: </label>
+                    <input required name="YOP" type="number" class="form-control inputpass" maxlength="4"  id="YOP" />
+                        <span id="errYOP" class="errYOP"></span>
+            
+            </div>
+			<div class="form-group">
+                <input class="btn btn-success" type="submit" name="submit_reg" value="Register">
+            </div>        
+            
+           </fieldset>
 
 
+
+        </div><!-- ends col-6 -->
+   
+            <div class="col-md-6">
+                <h1 class="page-header">Campus Quotient </h1>
+                <p>Wanna know more about us <br><a href='<c:url value="/studentreg?joinus"></c:url>' target="_blank">Click Here</a></p>
+                
+            </div>
+
+	</div>
+	
+</div>
+ </form><!-- ends register form -->
 </body>
 </html>
